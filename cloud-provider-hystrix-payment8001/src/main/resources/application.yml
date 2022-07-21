@@ -1,0 +1,16 @@
+server:
+  port: 8001
+spring:
+  application:
+    name: cloud-provider-hystrix-payment
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 2 #客户端向服务端发送心跳的间隔时间  默认30秒，改成了2秒
+    lease-expiration-duration-in-seconds: 4 #服务端在收到最后一次心跳的等待间隔上限，超出后剔除服务

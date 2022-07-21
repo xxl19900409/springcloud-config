@@ -1,0 +1,22 @@
+server:
+  port: 80
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka/,http://eureka7002.com:7002/eureka/
+    fetch-registry: true
+    register-with-eureka: false
+
+feign:
+  httpclient:
+    connection-timeout: 4000
+    max-connections: 200
+    max-connections-per-route: 50
+
+# 设置feign客户端超时时间  feign默认支持ribbon
+ribbon:
+  ReadTimeout: 5000 #建立连接时间
+  ConnectTimeout: 4000 #建立连接后获取资源所用时间
+logging:
+  level:
+    com.consumer.feign.PaymentFeignService: debug
